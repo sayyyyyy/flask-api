@@ -1,15 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify, make_response
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def return_data():
     data = {1: "a",
             2: "b",
             3: "c",
             4: "d",
             5: "e"}
-    return data
+    return make_response(jsonify(data))
 
 
 @app.route('/id=<id>')
